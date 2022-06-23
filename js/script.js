@@ -39,7 +39,7 @@ function generateGrid(difficultyValue) { // | ciclo per il numero di quadrati ch
     for (let i = 0; i < numberOfSquares; i++) {
         const newSquare = createNewSquare(difficultyValue); // # creo un nuovo quadrato con le classi relative
         const newUniqueNum = generateUniqueRandomNumber(currentBlackList, 0, numberOfSquares - 1); // | mi genero un nuovo numero randomico che non sia già stato estratto
-        newSquare.innerHTML = newUniqueNum; //? il contenuto del quadrato sarà il numero randomico unico appena generato
+        newSquare.innerHTML = newUniqueNum; // il contenuto del quadrato sarà il numero randomico unico appena generato
         let className = (newUniqueNum % 2 === 0) ? 'cyaned' : 'redned'; // ! in base al valore di parità del numero randomico unico appena generato assegnerò un toggle con classi diverse
         addEventListenerWithToggle(newSquare, className, newUniqueNum);
         gridContainer.append(newSquare); // § aggiungo il nuovo quadrato al parent
@@ -99,7 +99,6 @@ function generateUniqueRandomNumber(blackList, min, max) {
     }
     return newRandomNumber;
 }
-
 
 // Operatore ternario:
 // § condizione ? valoreSeLaCondizioneÈVera : valoreSeLaCondizioneÈFalsa;
