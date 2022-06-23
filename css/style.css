@@ -86,12 +86,16 @@ div.square1 {
     border: 3px white solid;
 }
 
-div.square.cyaned {
+div.square1.cyaned,
+div.square2.cyaned,
+div.square3.cyaned {
     background-color: #7fffd4;
     color: #011627;
 }
 
-div.square.redned {
+div.square1.redned,
+div.square2.redned,
+div.square3.redned {
     background-color: #ff008c;
     color: #011627;
 }
