@@ -19,17 +19,22 @@
 </head>
 
 <body>
-    <nav>
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              Seleziona Difficoltà
-            </a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-            </ul>
+    <!-- <nav>
+        <div class="form-group">
+            <label for="difficultySelect">Seleziona difficoltà</label>
+            <select class="form-control" id="difficultySelect">
+            </select>
         </div>
-    </nav>
+    </nav> -->
+
+
+
+    <select id="difficultySelect" onchange="getSelectValue();">
+
+        </select>
+
+
+    <button type="button" class="btn btn-primary" id="generator">Play</button>
 
     <main>
         <div id="grid-container" class="clearfix">

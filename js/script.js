@@ -1,54 +1,71 @@
 // | prendo il parent nel DOM
+
 const gridContainer = document.getElementById('grid-container');
-const difficultyContainer = document.getElementsByClassName('dropdown-menu');
 
+const difficultyContainer = document.getElementById('difficultySelect');
 
-// | creo una lista vuota, che sarà la lista degli elementi già estratti
-const currentBlackList = [];
-numberOfSquares = 100;
+const generatorButton = document.getElementById('generator');
+
+generateGrid();
+
+// | creo un bottone che mi permette di aggiornare la griglia
+generatorButton.addEventListener('click', function() {
+    generateGrid();
+});
+
 
 // Ciclo per il numero di difficoltà che voglio generare
+
+
+
 for (let i = 0; i < 3; i++) {
     const newDifficulty = createNewDifficulty(3 - i);
-    difficultyContainer.innerHTML += newDifficulty;
-
+    addEventListenerForDifficulty(newDifficulty);
+    difficultyContainer.append(newDifficulty);
 }
 
-// | ciclo per il numero di quadrati che voglio generare
-for (let i = 0; i < numberOfSquares; i++) {
-    // # creo un nuovo quadrato con le classi relative
-    const newSquare = createNewSquare();
+function generateGrid() { // | ciclo per il numero di quadrati che voglio generare
+    document.getElementById('grid-container').innerHTML = "";
+    const gridContainer = document.getElementById('grid-container');
+    const currentBlackList = []; // | creo una lista vuota, che sarà la lista degli elementi già estratti
+    numberOfSquares = 100;
 
-    // | mi genero un nuovo numero randomico che non sia già stato estratto
-    const newUniqueNum = generateUniqueRandomNumber(currentBlackList, 0, numberOfSquares - 1);
-
-    // ? il contenuto del quadrato sarà il numero randomico unico appena generato
-    newSquare.innerHTML = newUniqueNum;
-
-    // ! in base al valore di parità del numero randomico unico appena generato assegnerò un toggle con classi diverse
-    let className = (newUniqueNum % 2 === 0) ? 'cyaned' : 'redned';
-    addEventListenerWithToggle(newSquare, className, newUniqueNum);
-
-    // § aggiungo il nuovo quadrato al parent
-    gridContainer.append(newSquare);
-
-    // | e lo aggiungo alla blacklist
-    currentBlackList.push(newUniqueNum);
+    for (let i = 0; i < numberOfSquares; i++) {
+        const newSquare = createNewSquare(); // # creo un nuovo quadrato con le classi relative
+        const newUniqueNum = generateUniqueRandomNumber(currentBlackList, 0, numberOfSquares - 1); // | mi genero un nuovo numero randomico che non sia già stato estratto
+        newSquare.innerHTML = newUniqueNum; //? il contenuto del quadrato sarà il numero randomico unico appena generato
+        let className = (newUniqueNum % 2 === 0) ? 'cyaned' : 'redned'; // ! in base al valore di parità del numero randomico unico appena generato assegnerò un toggle con classi diverse
+        addEventListenerWithToggle(newSquare, className, newUniqueNum);
+        gridContainer.append(newSquare); // § aggiungo il nuovo quadrato al parent
+        currentBlackList.push(newUniqueNum); // | e lo aggiungo alla blacklist
+    }
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------FUNCTIONS*/
+function getSelectValue() {
+    var selectedValue = document.getElementById("difficultySelect").value;
+}
 
 function createNewDifficulty(difficultyNumber) {
-    const currentDifficulty = `<li><a class="dropdown-item" href="#">Difficoltà ${difficultyNumber}</a></li>`;
+    const currentDifficulty = document.createElement('option');
+    currentDifficulty.innerText = `Difficoltà ${difficultyNumber}`;
+    currentDifficulty.value = difficultyNumber;
     return currentDifficulty;
 }
 
 
+function addEventListenerForDifficulty(htmlElement) {
+
+    htmlElement.addEventListener('click', function() {
+        htmlElement.classList.toggle("selection");
+        console.log(htmlElement)
+    });
+}
+// console.log(`è stata cliccata la cella numero ${cellNumber}`);
 
 function addEventListenerWithToggle(htmlElement, classToToggle, cellNumber) {
     htmlElement.addEventListener('click', function() {
         htmlElement.classList.toggle(classToToggle);
-        console.log(`è stata cliccata la cella numero ${cellNumber}`);
     });
 }
 
