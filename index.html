@@ -11,12 +11,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 
     <!-- Importing custom css stylesheet -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
+    <nav>
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              Seleziona Difficoltà
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+            </ul>
+        </div>
+    </nav>
 
     <main>
         <div id="grid-container" class="clearfix">
@@ -26,7 +39,8 @@
 
 
     <!--  ? JS importato esternamente -->
-    <script type="text/javascript" src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
 </body>
 
 </html>

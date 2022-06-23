@@ -1,23 +1,33 @@
 // | prendo il parent nel DOM
 const gridContainer = document.getElementById('grid-container');
+const difficultyContainer = document.getElementsByClassName('dropdown-menu');
+
 
 // | creo una lista vuota, che sarà la lista degli elementi già estratti
 const currentBlackList = [];
+numberOfSquares = 100;
+
+// Ciclo per il numero di difficoltà che voglio generare
+for (let i = 0; i < 3; i++) {
+    const newDifficulty = createNewDifficulty(3 - i);
+    difficultyContainer.innerHTML += newDifficulty;
+
+}
 
 // | ciclo per il numero di quadrati che voglio generare
-for (let i = 0; i < 64; i++) {
+for (let i = 0; i < numberOfSquares; i++) {
     // # creo un nuovo quadrato con le classi relative
     const newSquare = createNewSquare();
 
     // | mi genero un nuovo numero randomico che non sia già stato estratto
-    const newUniqueNum = generateUniqueRandomNumber(currentBlackList, 0, 63);
+    const newUniqueNum = generateUniqueRandomNumber(currentBlackList, 0, numberOfSquares - 1);
 
     // ? il contenuto del quadrato sarà il numero randomico unico appena generato
     newSquare.innerHTML = newUniqueNum;
 
     // ! in base al valore di parità del numero randomico unico appena generato assegnerò un toggle con classi diverse
     let className = (newUniqueNum % 2 === 0) ? 'cyaned' : 'redned';
-    addEventListenerWithToggle(newSquare, className);
+    addEventListenerWithToggle(newSquare, className, newUniqueNum);
 
     // § aggiungo il nuovo quadrato al parent
     gridContainer.append(newSquare);
@@ -26,9 +36,19 @@ for (let i = 0; i < 64; i++) {
     currentBlackList.push(newUniqueNum);
 }
 
-function addEventListenerWithToggle(htmlElement, classToToggle) {
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------FUNCTIONS*/
+
+function createNewDifficulty(difficultyNumber) {
+    const currentDifficulty = `<li><a class="dropdown-item" href="#">Difficoltà ${difficultyNumber}</a></li>`;
+    return currentDifficulty;
+}
+
+
+
+function addEventListenerWithToggle(htmlElement, classToToggle, cellNumber) {
     htmlElement.addEventListener('click', function() {
         htmlElement.classList.toggle(classToToggle);
+        console.log(`è stata cliccata la cella numero ${cellNumber}`);
     });
 }
 
@@ -57,14 +77,6 @@ function generateUniqueRandomNumber(blackList, min, max) {
     return newRandomNumber;
 }
 
-
-// ! Se il numero interno è dispari voglio che il colore di background diventi rosso quando clicco
-// § Se il numero interno è pari voglio che il colore di background diventi ciano quando clicco
-
-// siamo nel for => (per ogni singolo quadratino) => se è dispari faccio qualcosa, se è pari faccio qualcos'altro
-
-// ? L'operatore ternario è un modo rapido di assegnare un valore in base a una (o più) condizioni
-// # a = 10 se c'è una data condizione, 11 in tutti gli altri casi.
 
 // Operatore ternario:
 // § condizione ? valoreSeLaCondizioneÈVera : valoreSeLaCondizioneÈFalsa;

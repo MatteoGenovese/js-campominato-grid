@@ -24,8 +24,8 @@ div#grid-container {
 
 div.square {
     float: left;
-    width: calc(100% / 8);
-    height: calc(100% / 8);
+    width: calc(100% / 10);
+    height: calc(100% / 10);
     cursor: crosshair;
     display: flex;
     align-items: center;
