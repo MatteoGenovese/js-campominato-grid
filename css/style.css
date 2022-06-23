@@ -23,11 +23,25 @@ div#grid-container {
     height: 650px;
 }
 
+div.square {
+    float: left;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
 div.square3 {
     float: left;
     width: calc(100% / 10);
     height: calc(100% / 10);
-    cursor: crosshair;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +55,7 @@ div.square2 {
     float: left;
     width: calc(100% / 9);
     height: calc(100% / 9);
-    cursor: crosshair;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +69,7 @@ div.square1 {
     float: left;
     width: calc(100% / 7);
     height: calc(100% / 7);
-    cursor: crosshair;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +80,9 @@ div.square1 {
 }
 
 div#grid-container,
-div.square {
+div.square3,
+div.square2,
+div.square1 {
     border: 3px white solid;
 }
 

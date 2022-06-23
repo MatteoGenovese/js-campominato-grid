@@ -2,36 +2,42 @@
 
 const gridContainer = document.getElementById('grid-container');
 
-const difficultyContainer = document.getElementById('difficultySelect');
+const difficultyContainer = document.getElementById('difficultySelected');
 
 const generatorButton = document.getElementById('generator');
 
-generateGrid();
+generateGrid(3);
 
 // | creo un bottone che mi permette di aggiornare la griglia
 generatorButton.addEventListener('click', function() {
-    generateGrid();
+    generateGrid(getSelectValue());
 });
 
-
 // Ciclo per il numero di difficoltà che voglio generare
-
-
-
 for (let i = 0; i < 3; i++) {
     const newDifficulty = createNewDifficulty(3 - i);
     addEventListenerForDifficulty(newDifficulty);
     difficultyContainer.append(newDifficulty);
 }
 
-function generateGrid() { // | ciclo per il numero di quadrati che voglio generare
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------FUNCTIONS*/
+
+function generateGrid(difficultyValue) { // | ciclo per il numero di quadrati che voglio generare
+
     document.getElementById('grid-container').innerHTML = "";
     const gridContainer = document.getElementById('grid-container');
     const currentBlackList = []; // | creo una lista vuota, che sarà la lista degli elementi già estratti
-    numberOfSquares = 100;
+    if (difficultyValue == 3) {
+        numberOfSquares = 100;
+    } else if (difficultyValue == 2) {
+        numberOfSquares = 81;
+    } else if (difficultyValue == 1) {
+        numberOfSquares = 49;
+    }
+
 
     for (let i = 0; i < numberOfSquares; i++) {
-        const newSquare = createNewSquare(); // # creo un nuovo quadrato con le classi relative
+        const newSquare = createNewSquare(difficultyValue); // # creo un nuovo quadrato con le classi relative
         const newUniqueNum = generateUniqueRandomNumber(currentBlackList, 0, numberOfSquares - 1); // | mi genero un nuovo numero randomico che non sia già stato estratto
         newSquare.innerHTML = newUniqueNum; //? il contenuto del quadrato sarà il numero randomico unico appena generato
         let className = (newUniqueNum % 2 === 0) ? 'cyaned' : 'redned'; // ! in base al valore di parità del numero randomico unico appena generato assegnerò un toggle con classi diverse
@@ -41,9 +47,9 @@ function generateGrid() { // | ciclo per il numero di quadrati che voglio genera
     }
 }
 
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------FUNCTIONS*/
 function getSelectValue() {
-    var selectedValue = document.getElementById("difficultySelect").value;
+    var selectedValue = document.getElementById("difficultySelected").value;
+    return selectedValue;
 }
 
 function createNewDifficulty(difficultyNumber) {
@@ -69,9 +75,9 @@ function addEventListenerWithToggle(htmlElement, classToToggle, cellNumber) {
     });
 }
 
-function createNewSquare() {
+function createNewSquare(difficultyValue) {
     const currentSquare = document.createElement('div');
-    currentSquare.classList.add('square');
+    currentSquare.classList.add(`square${difficultyValue}`);
     return currentSquare;
 }
 
